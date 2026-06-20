@@ -20,8 +20,8 @@ COPY repository/  ./repository/
 COPY services/    ./services/
 COPY workers/     ./workers/
 
-# HUSKY=0 prevents the prepare script from running husky (a devDependency) during install
-RUN HUSKY=0 npm install --omit=dev
+# remove the prepare script (runs husky, a devDependency) before installing
+RUN npm pkg delete scripts.prepare && npm install --omit=dev
 
 
 # ── Stage 2: lean production image ───────────────────────────────────────────
