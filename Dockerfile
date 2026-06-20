@@ -20,8 +20,8 @@ COPY repository/  ./repository/
 COPY services/    ./services/
 COPY workers/     ./workers/
 
-# install production dependencies only
-RUN npm install --omit=dev
+# HUSKY=0 prevents the prepare script from running husky (a devDependency) during install
+RUN HUSKY=0 npm install --omit=dev
 
 
 # ── Stage 2: lean production image ───────────────────────────────────────────
