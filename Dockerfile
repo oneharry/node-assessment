@@ -6,8 +6,8 @@ RUN apk add --no-cache python3 make g++
 
 WORKDIR /app
 
-# copy package manifests
-COPY package.json package-lock.json ./
+# copy package manifest
+COPY package.json ./
 
 # copy all local file: packages so npm ci can resolve them
 COPY core/        ./core/
@@ -21,7 +21,7 @@ COPY services/    ./services/
 COPY workers/     ./workers/
 
 # install production dependencies only
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 
 # ── Stage 2: lean production image ───────────────────────────────────────────
